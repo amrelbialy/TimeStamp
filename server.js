@@ -24,7 +24,8 @@ app.get("/", function (req, res) {
 app.get("/api/timestamp/:date_string", function (req, res) {
   console.log()
   let date =new Date(parseInt(req.params.date_string))
-  console.log(date)
+  let anotherDate = new Date(req.params.date_string)
+
   
   if(date.toUTCString() === "Invalid Date"){
      res.send(res.json({"error" : "Invalid Date" }))
@@ -32,7 +33,7 @@ app.get("/api/timestamp/:date_string", function (req, res) {
    }else if((req.params.date_string) == date.getTime()){
       res.send(res.json({"unix" : req.params.date_string, "utc" : date.toUTCString()})) 
   } else {
-     res.send(res.json({"unix" : date.getTime() , "utc" : date.toUTCString()}))
+     res.send(res.json({"unix" : anotherDate.getTime() , "utc" : anotherDate.toUTCString()}))
   }
 });
 
